@@ -22,7 +22,10 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // Routes
 const availibilityRoutes = require("./routes/availibilityRoutes");
+const specializationRouter = require("./routes/specializationRouter");
+
 app.use("/api", availibilityRoutes);
+app.use("/api", specializationRouter);
 
 // Start server
 app.listen(port, () => {

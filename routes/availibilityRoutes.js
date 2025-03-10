@@ -35,7 +35,7 @@ router.get("/availabilityByUser/:userId", async (req, res) => {
     if(user === null){
       return res.status(400).json({ message: "User not found" });
     }
-    const events = await Availability.find({user: user._id});
+    const events = await Availability.find({user: user._id}).populate('bookedBy');
     res.status(200).json(events);
   } catch (err) {
     res.status(500).json({ message: err.message });
