@@ -2,7 +2,8 @@ const express = require("express");
 const Availability = require("../models/Availability");
 const User = require("../models/User");
 const router = express.Router();
-
+const verifyToken = require('../middleware/cognitoAuth');
+router.use(verifyToken)
 // Create a new event
 router.post("/availability", async (req, res) => {
   const { title, start, end , user } = req.body;

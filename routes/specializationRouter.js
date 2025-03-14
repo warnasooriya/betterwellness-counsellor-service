@@ -1,6 +1,8 @@
 const express = require("express");
 const Specialization = require("../models/Specialization");
 const router = express.Router();
+const verifyToken = require('../middleware/cognitoAuth');
+// router.use(verifyToken)
  
 // Get all events
 router.get("/specialization", async (req, res) => {
@@ -14,7 +16,7 @@ router.get("/specialization", async (req, res) => {
 
 
 // Create a new event
-router.post("/specialization", async (req, res) => {
+router.post("/specialization",verifyToken, async (req, res) => {
   const { Area , Description} = req.body;
 
   if (!Area) {
@@ -38,7 +40,7 @@ router.post("/specialization", async (req, res) => {
 
 
 // Create bulk
-router.post("/specializations", async (req, res) => {
+router.post("/specializations", verifyToken,async (req, res) => {
     const specializationsList = req.body;
     
     try {
