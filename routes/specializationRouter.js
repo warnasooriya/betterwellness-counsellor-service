@@ -2,9 +2,8 @@ const express = require("express");
 const Specialization = require("../models/Specialization");
 const router = express.Router();
 const verifyToken = require('../middleware/cognitoAuth');
-// router.use(verifyToken)
+router.use(verifyToken)
  
-// Get all events
 router.get("/specialization", async (req, res) => {
   try {
     const specialization = await Specialization.find();

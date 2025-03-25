@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const jwksClient = require('jwks-rsa');
+const UnauthorizedUrls = require('../config/unAuthUrls');
 
 const iss = `https://cognito-idp.${process.env.COGNITO_REGION}.amazonaws.com/${process.env.COGNITO_USER_POOL_ID}`;
 
@@ -18,6 +19,7 @@ function getKey(header, callback) {
 }
 
 const verifyToken = (req, res, next) => {
+    if(UnauthorizedUrls.includes(req.url)) return next(); // Skip verification for UnauthorizedUrls
     const token = req.headers.authorization;
 
     if (!token || !token.startsWith('Bearer ')) {
