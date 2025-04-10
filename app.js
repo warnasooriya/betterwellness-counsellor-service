@@ -11,7 +11,8 @@ const port = process.env.PORT || 5000;
 const requestLogger = require('./middleware/requestLogger');
 const errorLogger = require('./middleware/errorLogger');
 
-app.use(cors(corsOptions))
+app.use(cors());
+app.options('*', cors()); // Handle preflight requests
 app.use(bodyParser.json());
 
 app.use(express.json());
@@ -30,10 +31,17 @@ const availibilityRoutes = require("./routes/availibilityRoutes");
 const specializationRouter = require("./routes/specializationRouter");
 const publicRoutes = require("./routes/publicRoutes");
 
-app.use("/api", availibilityRoutes);
-app.use("/api", specializationRouter);
-app.use("/api", publicRoutes);
+app.use("/counsellor", availibilityRoutes);
+app.use("/counsellor", specializationRouter);
+app.use("/counsellor", publicRoutes);
 
+app.get('/counsellor/health', (req, res) => {
+  res.json({ status: 'ok', traceId: req.traceId });
+});
+
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', traceId: req.traceId });
+});
 
 app.use(errorLogger);
 
