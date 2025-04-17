@@ -10,9 +10,9 @@ const port = process.env.PORT || 5000;
 // Middleware
 const requestLogger = require('./middleware/requestLogger');
 const errorLogger = require('./middleware/errorLogger');
-
-app.use(cors());
-app.options('*', cors()); // Handle preflight requests
+app.use(cors(corsOptions))
+// app.use(cors());
+// app.options('*', cors()); // Handle preflight requests
 app.use(bodyParser.json());
 
 app.use(express.json());
