@@ -4,9 +4,9 @@ phases:
   pre_build:
     commands:
       - echo "🔐 Logging in to ECR..."
-      - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 529088268162.dkr.ecr.ap-southeast-1.amazonaws.com
+      - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 565106043125.dkr.ecr.ap-southeast-1.amazonaws.com
       - aws eks update-kubeconfig --region ap-southeast-1 --name betterwellness-cluster
-      - export REPOSITORY_URI=529088268162.dkr.ecr.ap-southeast-1.amazonaws.com/betterwellness/counsellor-service
+      - export REPOSITORY_URI=565106043125.dkr.ecr.ap-southeast-1.amazonaws.com/betterwellness/counsellor-service
       - export IMAGE_TAG=latest
   build:
     commands:
