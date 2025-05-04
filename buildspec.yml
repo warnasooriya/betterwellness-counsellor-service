@@ -8,6 +8,8 @@ phases:
       - aws eks update-kubeconfig --region ap-southeast-1 --name betterwellness-cluster
       - export REPOSITORY_URI=565106043125.dkr.ecr.ap-southeast-1.amazonaws.com/betterwellness/counsellor-service
       - export IMAGE_TAG=latest
+      - echo "Current IAM Role:"
+      - aws sts get-caller-identity
   build:
     commands:
       - echo "🏗️ Building Docker image..."
@@ -18,4 +20,3 @@ phases:
       - echo "📤 Pushing image..."
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo "📤 Pushing image complete"
-      - echo aws sts get-caller-identity
