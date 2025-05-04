@@ -16,7 +16,7 @@ spec:
         - name: regcred
       containers:
         - name: betterwellness-counsellor
-          image: 529088268162.dkr.ecr.ap-southeast-1.amazonaws.com/betterwellness/counsellor-service:latest
+          image: 565106043125.dkr.ecr.ap-southeast-1.amazonaws.com/betterwellness/counsellor-service:latest
           ports:
             - containerPort: 5000
           envFrom:
