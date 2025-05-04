@@ -21,4 +21,4 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo "📤 Pushing image complete"
       - echo "✅ Restarting deployment counsellor-service..."
-      - kubectl rollout restart deployment counsellor-service
+      - kubectl rollout restart deployment betterwellness-counsellor
